@@ -9,9 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // 初始化应用
 function initApp() {
-    const today = new Date();
-    const formattedDate = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
-    document.getElementById('moodDate').value = formattedDate;
+    const now = new Date();
+    const formattedDateTime = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+    document.getElementById('moodDate').value = formattedDateTime;
     loadMoodHistory();
 }
 // 设置所有事件监听
@@ -97,15 +97,12 @@ function addToSearchOptions(name) {
 
 // 保存心情记录
 function saveMoodEntry() {
-    const date = document.getElementById('moodDate').value;
+    const now = new Date();
+    const formattedDate = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+    const formattedTime = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
     const level = document.getElementById('moodLevel').value;
     const customName = document.getElementById('moodCustomName').value;
     const note = document.getElementById('moodNote').value;
-    // 验证
-    if (!date) {
-        alert('请选择日期');
-        return;
-    }
     
     if (!level) {
         alert('请选择心情');
@@ -119,29 +116,20 @@ function saveMoodEntry() {
     
     // 创建记录对象
     const entry = {
-        date: date,
+        date: formattedDate,
+        time: formattedTime,
         level: level,
         customName: customName,
         note: note,
-        createdAt: new Date().getTime()
+        createdAt: now.getTime()
     };
     
-    // 获取现有记录
     let history = JSON.parse(localStorage.getItem('moodHistory')) || [];
-    
-    // 添加新记录
     history.push(entry);
-    
-    // 按日期排序（新到旧）
-    history.sort((a, b) => new Date(b.date) - new Date(a.date));
-    
-    // 保存到本地存储
+    history.sort((a, b) => b.createdAt - a.createdAt);
     localStorage.setItem('moodHistory', JSON.stringify(history));
     
-    // 刷新显示
     loadMoodHistory();
-    
-    // 重置表单
     resetForm();
 }
 
@@ -165,12 +153,27 @@ function renderHistory(history) {
         return `
             <div class="mood-entry mood-${entry.level === 'custom' ? 'custom' : entry.level}">
                 <button class="delete-btn" data-index="${index}">× 删除</button>
-                <div class="mood-date">${formatDate(entry.date)}</div>
+                <div class="mood-date">
+                    <span class="date-part">${formatDateWithoutTime(entry.date)}</span>
+                    <span class="time-part">${entry.time}</span>
+                </div>
                 <div class="mood-tag">${moodText}</div>
                 <div class="mood-content">${entry.note}</div>
             </div>
         `;
     }).join('');
+}
+
+// 新增只格式化日期的函数
+function formatDateWithoutTime(dateStr) {
+    const date = new Date(dateStr);
+    const options = { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric',
+        weekday: 'long'
+    };
+    return date.toLocaleDateString('zh-CN', options);
 }
 
 // 获取心情显示文本
@@ -224,7 +227,8 @@ function resetSearch() {
 // 重置表单
 function resetForm() {
     document.getElementById('moodForm').reset();
-    document.getElementById('moodDate').value = new Date().toISOString().split('T')[0];
+    const now = new Date();
+    document.getElementById('moodDate').value = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
     document.getElementById('moodLevel').value = '';
     document.getElementById('moodCustomName').value = '';
     document.querySelectorAll('.mood-levels button').forEach(b => b.classList.remove('active'));
@@ -238,7 +242,10 @@ function formatDate(dateStr) {
         year: 'numeric', 
         month: 'long', 
         day: 'numeric',
-        weekday: 'long'
+        weekday: 'long',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
     };
     return date.toLocaleDateString('zh-CN', options);
 }

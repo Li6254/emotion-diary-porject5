@@ -6,6 +6,7 @@ body {
     line-height: 1.6;
     padding: 20px;
     margin: 0;
+    font-size: 16px;
 }
 *:focus {
     outline: none;
@@ -75,6 +76,7 @@ textarea {
 }
 
 .mood-levels button {
+    font-size: 16px;
     flex: 1;
     min-width: 80px;
     padding: 12px;
@@ -122,6 +124,7 @@ textarea {
 }
 
 .custom-mood-input input {
+    font-size: 16px;
     flex: 3;
     padding: 10px;
     border: 1px solid #c8e0c8;
@@ -129,6 +132,7 @@ textarea {
 }
 
 .custom-mood-input button {
+    font-size: 17px;
     flex: 1;
     padding: 10px;
     background: #48cfad;
@@ -172,6 +176,7 @@ button[type="submit"]:hover {
 .search-section input,
 .search-section select {
     flex: 2;
+    font-size: 18px;
     min-width: 150px;
     padding: 10px;
     border: 1px solid #c8e0c8;
@@ -180,6 +185,7 @@ button[type="submit"]:hover {
 
 .search-section button {
     flex: 1;
+    font-size: 18px;
     min-width: 80px;
     padding: 10px;
     border: none;
@@ -222,9 +228,27 @@ button[type="submit"]:hover {
 .mood-custom { border-color: #9b59b6; }
 
 .mood-date {
-    color: #5a8f5a;
+    color: #2e8b57;
     font-weight: bold;
     margin-bottom: 5px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 日期部分 */
+.mood-date .date-part {
+    color: #5a8f5a;
+}
+
+/* 时间部分 */
+.mood-date .time-part {
+    background: #e8f5e9;
+    padding: 3px 8px;
+    border-radius: 12px;
+    color: #2e8b57;
+    font-size: 0.9em;
 }
 
 .mood-content {
@@ -257,4 +281,16 @@ button[type="submit"]:hover {
     color: #999;
     font-style: italic;
     padding: 20px;
+}
+/* 表单中的日期显示 */
+#moodDate {
+    background-color: #f8fff8;
+    border: 1px solid #c8e0c8;
+    border-radius: 8px;
+    padding: 12px;
+    color: #2e8b57;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    width: 97%;
 }
