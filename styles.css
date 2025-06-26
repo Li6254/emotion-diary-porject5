@@ -1,0 +1,260 @@
+/* 基础样式 */
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    background-color: #f8fff8;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    margin: 0;
+}
+*:focus {
+    outline: none;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 100, 0, 0.05);
+    border: 1px solid #e0f0e0;
+}
+
+h1 {
+    color: #2e8b57;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* 卡片表单 */
+.card {
+    background: #fafffa;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid #d4e8d4;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="date"],
+textarea {
+    width: 96.5%;
+    padding: 12px;
+    border: 1px solid #c8e0c8;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #f8fff8;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* 心情选择区域 */
+.mood-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mood-levels {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.mood-levels button {
+    flex: 1;
+    min-width: 80px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #e8f5e9;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 16px;
+}
+
+.mood-levels button:hover {
+    background: #d0ebd2;
+}
+
+.mood-levels button.active {
+    background: #2e8b57;
+    color: white;
+}
+
+/* 自定义心情 */
+.custom-mood-option {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#customMoodBtn {
+    padding: 12px;
+    background: #d4e8d4;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+#customMoodBtn:hover {
+    background: #b8d8b8;
+}
+
+.custom-mood-input {
+    display: flex;
+    gap: 10px;
+}
+
+.custom-mood-input input {
+    flex: 3;
+    padding: 10px;
+    border: 1px solid #c8e0c8;
+    border-radius: 8px;
+}
+
+.custom-mood-input button {
+    flex: 1;
+    padding: 10px;
+    background: #48cfad;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+/* 提交按钮 */
+button[type="submit"] {
+    background-color: #2e8b57;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+button[type="submit"]:hover {
+    background-color: #3cb371;
+    box-shadow: 0 4px 8px rgba(46, 139, 87, 0.2);
+}
+
+/* 搜索区域 */
+.search-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.search-section input,
+.search-section select {
+    flex: 2;
+    min-width: 150px;
+    padding: 10px;
+    border: 1px solid #c8e0c8;
+    border-radius: 8px;
+}
+
+.search-section button {
+    flex: 1;
+    min-width: 80px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#searchBtn {
+    background-color: #2e8b57;
+    color: white;
+}
+
+#resetSearchBtn {
+    background-color: #f0f0f0;
+}
+
+/* 历史记录 */
+.history {
+    margin-top: 30px;
+}
+
+.mood-entry {
+    background: #fafffa;
+    padding: 18px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border-left: 5px solid;
+    transition: transform 0.2s;
+}
+
+.mood-entry:hover {
+    transform: translateX(5px);
+}
+
+.mood-1 { border-color: #e74c3c; }
+.mood-2 { border-color: #f39c12; }
+.mood-3 { border-color: #a0d468; }
+.mood-4 { border-color: #48cfad; }
+.mood-5 { border-color: #2e8b57; }
+.mood-custom { border-color: #9b59b6; }
+
+.mood-date {
+    color: #5a8f5a;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.mood-content {
+    color: #555;
+    margin-top: 10px;
+    padding-left: 5px;
+}
+
+.mood-tag {
+    display: inline-block;
+    background: #e8f5e9;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.9em;
+    margin-right: 8px;
+    color: #2e8b57;
+}
+
+.delete-btn {
+    float: right;
+    color: #e74c3c;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.empty {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    padding: 20px;
+}
